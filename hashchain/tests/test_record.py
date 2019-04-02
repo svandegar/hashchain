@@ -38,6 +38,12 @@ chain_b = [
     records.Record(b_content, records.Record(a_content).get_hash()).to_dict(),
     records.Record(c_content, genesis_hash).to_dict()
 ]
+chain_c = [
+    {'content': {'a': 4}, 'hash': '95fdffb09de2f3e3cea8b86da0748ca94d962090d35cd58d6865f860ac467a3e', 'previous_hash': 'e611aee939484e3afa4ee9d9c4e23a004a1fe2805b7fa4c95d42f3f2667638a2'},
+    records.Record(b_content, records.Record(a_content).get_hash()).to_dict(),
+    records.Record(c_content, records.Record(b_content, records.Record(a_content).get_hash()).get_hash()).to_dict()
+]
+
 
 
 
@@ -123,3 +129,6 @@ def test_verify():
 
     with pytest.raises(ValueError) :
         records.verify(chain_b)
+
+    with pytest.raises(ValueError) :
+        records.verify(chain_c)
