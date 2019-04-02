@@ -1,2 +1,1 @@
-def foo():
-    pass
+from hashchain import hashchain

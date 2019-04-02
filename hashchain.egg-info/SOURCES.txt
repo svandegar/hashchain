@@ -1,0 +1,9 @@
+README.md
+setup.cfg
+setup.py
+hashchain/__init__.py
+hashchain.egg-info/PKG-INFO
+hashchain.egg-info/SOURCES.txt
+hashchain.egg-info/dependency_links.txt
+hashchain.egg-info/not-zip-safe
+hashchain.egg-info/top_level.txt
