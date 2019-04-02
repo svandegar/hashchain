@@ -1,1 +1,1 @@
-from hashchain import hashchain
+from hashchain import records

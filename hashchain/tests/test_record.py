@@ -1,4 +1,4 @@
-from hashchain import hashchain
+from hashchain import records
 import hashlib
 import json
 
@@ -12,38 +12,37 @@ e_content = {'a': 3}
 f_content = {'a': 3}
 g_content = {'c': 4}
 
-d_previous_hash = b'foo'
-e_previous_hash = b'bar'
-f_previous_hash = b'foo'
-g_previous_hash = b'foo'
+genesis_hash = hashlib.sha3_256(b'0x0000000000000000000000000000000000000000000000000000000000000000')
 
-a = hashchain.Record(a_content)
-b = hashchain.Record(b_content)
-c = hashchain.Record(c_content)
-d = hashchain.Record(d_content, hashlib.sha3_256(d_previous_hash))
-e = hashchain.Record(e_content, hashlib.sha3_256(e_previous_hash))
-f = hashchain.Record(f_content, hashlib.sha3_256(f_previous_hash))
-g = hashchain.Record(g_content, hashlib.sha3_256(g_previous_hash))
+d_previous_hash = hashlib.sha3_256(b'foo')
+e_previous_hash = hashlib.sha3_256(b'bar')
+f_previous_hash = hashlib.sha3_256(b'foo')
+g_previous_hash = hashlib.sha3_256(b'foo')
+
+a = records.Record(a_content)
+b = records.Record(b_content)
+c = records.Record(c_content)
+d = records.Record(d_content, d_previous_hash)
+e = records.Record(e_content, e_previous_hash)
+f = records.Record(f_content, f_previous_hash)
+g = records.Record(g_content, g_previous_hash)
 
 
 def test_Record_get_hash():
     # first Record
-    previous_hash_a = hashlib.sha3_256()
-    previous_hash_a.update(b'0x0000000000000000000000000000000000000000000000000000000000000000')
+    a_previous_hash = genesis_hash
     hash_a = hashlib.sha3_256()
-    hash_a.update(json.dumps({'a': 3}).encode('utf-8'))
-    hash_a.update(previous_hash_a.digest())
+    hash_a.update(json.dumps(a_content).encode('utf-8'))
+    hash_a.update(a_previous_hash.digest())
 
-    assert (a.get_hash().digest() == hash_a.digest())
+    assert (a.get_hash() == hash_a.hexdigest())
 
     # other Record
-    previous_hash_d = hashlib.sha3_256()
-    previous_hash_d.update(b'foo')
     hash_d = hashlib.sha3_256()
-    hash_d.update(json.dumps({'a': 3}).encode('utf-8'))
-    hash_d.update(previous_hash_d.digest())
+    hash_d.update(json.dumps(d_content).encode('utf-8'))
+    hash_d.update(d_previous_hash.digest())
 
-    assert (d.get_hash().digest() == hash_d.digest())
+    assert (d.get_hash() == hash_d.hexdigest())
 
 
 def test_Record_hex():
@@ -58,6 +57,17 @@ def test_Record_get_content():
     assert d.get_content() == d_content
     assert e.get_content() == e_content
     assert f.get_content() == f_content
+    assert g.get_content() == g_content
+
+
+def test_Record_get_previous_hash():
+    assert a.get_previous_hash() == genesis_hash.hexdigest()
+    assert b.get_previous_hash() == genesis_hash.hexdigest()
+    assert c.get_previous_hash() == genesis_hash.hexdigest()
+    assert d.get_previous_hash() == d_previous_hash.hexdigest()
+    assert e.get_previous_hash() == e_previous_hash.hexdigest()
+    assert f.get_previous_hash() == f_previous_hash.hexdigest()
+    assert g.get_previous_hash() == g_previous_hash.hexdigest()
 
 
 def test_Record_eq__():
@@ -67,6 +77,7 @@ def test_Record_eq__():
     assert (d == f)
     assert (d != e)
 
+
 def test_Record_update():
     assert (c != a)
     c.update(a_content)
@@ -75,3 +86,15 @@ def test_Record_update():
     assert (d != g)
     d.update(g_content)
     assert (d == g)
+
+
+def test_Record_to_dict():
+    assert a.to_dict() == dict(content=a_content,
+                               hash=a.get_hash(),
+                               previous_hash=a.get_previous_hash())
+
+
+def test_Record_to_json():
+    assert a.to_json() == json.dumps(dict(content=a_content,
+                                          hash=a.get_hash(),
+                                          previous_hash=a.get_previous_hash()))
