@@ -3,7 +3,7 @@ import hashlib
 import json
 import pytest
 
-# testing objects
+# Set inputs
 
 a_content = {'a': 3}
 b_content = {'a': 3}
@@ -44,7 +44,7 @@ chain_c = [
     records.Record(c_content, records.Record(b_content, records.Record(a_content).get_hash()).get_hash()).to_dict()
 ]
 
-
+# Tests
 
 
 def test_Record_get_hash():
@@ -132,3 +132,12 @@ def test_verify():
 
     with pytest.raises(ValueError) :
         records.verify(chain_c)
+
+
+def test_Chain():
+   chain1 = records.Chain([a_content,b_content,c_content,d_content])
+   assert chain1.records.__len__() == 4
+   assert chain1.last_hash == '4065526ceb951b5aa5bf1392cb5611275091f1dcd87c2842fcc2379ef9606c2f'
+
+   chain2 = records.Chain([a_content, b_content, c_content, d_content], last_hash='foo')
+   assert chain2.last_hash =='cbf4c24a816500cee4c0ed556775b14bf12369cba31c3fb1aa6faef132a1a79e'

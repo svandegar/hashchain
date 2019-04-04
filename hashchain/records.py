@@ -43,6 +43,20 @@ class Record():
         return json.dumps(self.to_dict())
 
 
+class Chain():
+    def __init__(self, content_dicts: list, last_hash: str = None):
+        if last_hash:
+            self.last_hash = last_hash
+        else:
+            self.last_hash = hashlib.sha3_256(b'0x0000000000000000000000000000000000000000000000000000000000000000').hexdigest()
+        self.records = []
+        for element in content_dicts:
+            record = Record(element, self.last_hash)
+            self.records.append(record)
+            self.last_hash = record.get_hash()
+
+
+
 def verify(records_dicts: list) -> bool:
     """
     Verifies a given list of records dicts
