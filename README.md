@@ -14,9 +14,22 @@ This python package is available on PyPi package manager. I recommend installing
 
 ## How it works
 
+## Warning
+The package is still 'work in progress' Do not use it before the official beta release. All the features are still subject to changes without any advertisement and can broke previously running scripts 
 
 
 ## Changelog
+#### 0.3.0
+##### Features:
+Request.to_dict() and .to_json() now returns a simple object. The keys "hash" and "previous_hash" are appended at the same level
+
+#####Fix: 
+Add web3.py to the install_requires list
+
+#### 0.2.0
+##### Features:
+Add records to build hash chains
+Add ethereum_connector to store hashes on the Ethereum blockchain 
+
 #### 0.1.0
 First Alpha release. 
-The package is still 'work in progress' Do not use it before the official beta release. 

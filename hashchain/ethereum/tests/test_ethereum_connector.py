@@ -8,7 +8,7 @@ chain = records.Chain([{'foo':3},{'bar':4},{'foobar':'barfoo'}])
 with open('hashchain/ethereum/Hashchain.json') as file:
     contract_json = json.load(file)
 
-with open('hashchain/ethereum/tests/tests_inputs.json') as file:
+with open('./tests_inputs.json') as file:
     tests_inputs = json.load(file)
 
 

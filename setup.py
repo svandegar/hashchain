@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='hashchain',
-    version='0.1.0',
+    version='0.3.0',
     description='Helper to certify database entries by using hashchains',
     long_description='',
     url='https://github.com/svandegar/hashchain',
@@ -13,8 +13,7 @@ setup(
     zip_safe=False,
     download_url='',
     install_requires=[
-        '',
-        ''
+        'web3',
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',

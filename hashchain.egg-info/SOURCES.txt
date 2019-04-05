@@ -2,6 +2,7 @@ README.md
 setup.cfg
 setup.py
 hashchain/__init__.py
+hashchain/records.py
 hashchain.egg-info/PKG-INFO
 hashchain.egg-info/SOURCES.txt
 hashchain.egg-info/dependency_links.txt

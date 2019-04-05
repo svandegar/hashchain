@@ -61,9 +61,10 @@ class Record():
         Return a dict of the complete record along with the hex string of the record's hash and the previous hash
         :return: dict
         """
-        return dict(content=self.get_content(),
-                    hash=self.get_hash(),
-                    previous_hash=self.get_previous_hash())
+        dict = self.get_content()
+        dict['hash'] = self.get_hash()
+        dict['previous_hash'] = self.get_previous_hash()
+        return dict
 
     def to_json(self) -> str:
         """
@@ -94,7 +95,8 @@ def verify(records_dicts: list) -> bool:
     :return: returns True if the list is valid. Raise ValueError if not valid.
     """
     for index, record in enumerate(records_dicts):
-        test_record = Record(record['content'], record['previous_hash'])
+        content = {x : record[x] for x in record if x not in ['previous_hash','hash']}
+        test_record = Record(content, record['previous_hash'])
 
         if record['hash'] != test_record.get_hash():
             raise ValueError('The record do no correspond to the hash provided')

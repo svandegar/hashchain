@@ -2,6 +2,7 @@ from hashchain import records
 import hashlib
 import json
 import pytest
+import copy
 
 # Set inputs
 
@@ -113,15 +114,19 @@ def test_Record_update():
 
 
 def test_Record_to_dict():
-    assert a.to_dict() == dict(content=a_content,
-                               hash=a.get_hash(),
-                               previous_hash=a.get_previous_hash())
+    dict = copy.deepcopy(a_content)
+    dict['hash']=a.get_hash()
+    dict['previous_hash'] = a.get_previous_hash()
+
+    assert a.to_dict() == dict
 
 
 def test_Record_to_json():
-    assert a.to_json() == json.dumps(dict(content=a_content,
-                                          hash=a.get_hash(),
-                                          previous_hash=a.get_previous_hash()))
+    dict = copy.deepcopy(a_content)
+    dict['hash'] = a.get_hash()
+    dict['previous_hash'] = a.get_previous_hash()
+
+    assert a.to_json() == json.dumps(dict)
 
 
 def test_verify():
