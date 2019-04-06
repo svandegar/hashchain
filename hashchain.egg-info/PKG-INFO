@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: hashchain
-Version: 0.2.0
+Version: 0.3.0
 Summary: Helper to certify database entries by using hashchains
 Home-page: https://github.com/svandegar/hashchain
 Author: Seraphin Vandegar

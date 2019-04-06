@@ -99,9 +99,9 @@ def verify(records_dicts: list) -> bool:
         test_record = Record(content, record['previous_hash'])
 
         if record['hash'] != test_record.get_hash():
-            raise ValueError('The record do no correspond to the hash provided')
+            raise ValueError(f"The record: {record} do no correspond to the hash provided :{record['hash']}")
 
         elif index >= 1 and test_record.get_previous_hash() != records_dicts[index - 1]['hash']:
-            raise ValueError('The previous hash do no correspond to the hash of the previous element')
+            raise ValueError(f"The previous hash: {test_record.get_previous_hash()} do no correspond to the hash of the previous element: {records_dicts[index - 1]['hash']}")
 
     return True

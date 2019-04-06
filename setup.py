@@ -1,10 +1,14 @@
 from setuptools import setup
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
 setup(
     name='hashchain',
     version='0.3.0',
-    description='Helper to certify database entries by using hashchains',
-    long_description='',
+    description='Helper to certify database entries, using hashchains qnd blockchqins',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     url='https://github.com/svandegar/hashchain',
     author='Seraphin Vandegar',
     author_email='svandegar@hotmail.com',

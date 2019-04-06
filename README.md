@@ -1,7 +1,7 @@
 # Hashchain  
 
 ## Introduction
-`hashchain` is a Python package developed to join the easiness of Python with the security of blockchain to certify that your important records haven't been tampered. 
+`hashchain` is a Python package developed to join the ease of use of Python with the security of blockchain to certify that your important records haven't been tampered with. 
 
 The core module creates a hash chain, attesting that no record can be tempered one saved. The blockchain module save a proof of your hashchain permanentely in the most secured way. Then, it's impossible to alter the haschain without causing a discrepancy with the blockchain.  
 
@@ -19,6 +19,10 @@ The package is still 'work in progress' Do not use it before the official beta r
 
 
 ## Changelog
+#### 0.4.0
+##### Features:
+Add more precise feedback on Record.verify() errors
+
 #### 0.3.0
 ##### Features:
 Request.to_dict() and .to_json() now returns a simple object. The keys "hash" and "previous_hash" are appended at the same level

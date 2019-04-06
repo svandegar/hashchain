@@ -7,4 +7,5 @@ hashchain.egg-info/PKG-INFO
 hashchain.egg-info/SOURCES.txt
 hashchain.egg-info/dependency_links.txt
 hashchain.egg-info/not-zip-safe
+hashchain.egg-info/requires.txt
 hashchain.egg-info/top_level.txt
