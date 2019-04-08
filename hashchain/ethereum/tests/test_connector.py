@@ -1,4 +1,4 @@
-from hashchain.ethereum import ethereum_connector
+from hashchain.ethereum.connector import EthConnector
 from hashchain import records
 import json
 
@@ -12,12 +12,12 @@ with open('./tests_inputs.json') as file:
     tests_inputs = json.load(file)
 
 
-connector = ethereum_connector.EthConnector(
+connector = EthConnector(
     contract_abi=json.dumps(contract_json['abi']),
     contract_address=tests_inputs['contract_address'] ,
     sender_public_key= tests_inputs['sender_public_key'],
     sender_private_key= tests_inputs['sender_private_key'],
-    provider_address= tests_inputs['provider_address']
+    provider_url= tests_inputs['provider_address']
 )
 
 

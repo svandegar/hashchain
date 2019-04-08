@@ -10,20 +10,20 @@ class EthConnector():
                  contract_address: str,
                  sender_public_key: str,
                  sender_private_key: str,
-                 provider_address: str):
+                 provider_url: str):
         """
 
         :param contract_abi: smart contract's abi JSON string
         :param contract_address: smart contract address
         :param sender_public_key: public key of the sender
         :param sender_private_key: private key of the sender
-        :param provider_address: address of the Ethereum connection provider
+        :param provider_url: address of the Ethereum connection provider
         """
         self._contract_abi = contract_abi
         self._contract_address = Web3.toChecksumAddress(contract_address)
         self._sender_public_key = Web3.toChecksumAddress(sender_public_key)
         self._sender_private_key = sender_private_key
-        self._provider_address = provider_address
+        self._provider_address = provider_url
         self.w3 = Web3(HTTPProvider(self._provider_address))
         self.contract = self.w3.eth.contract(address=contract_address, abi=contract_abi)
 
