@@ -24,3 +24,5 @@ def test_get_txn_receipt():
         provider_url=tests_inputs['provider_address']
     )
     assert contract.get_txn_receipt()
+
+    assert contract.address
