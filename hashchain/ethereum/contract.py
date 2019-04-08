@@ -48,11 +48,10 @@ class EthContract():
 
     def get_txn_receipt(self) -> dict:
         """
-        Add the address variable to EthContract and returns the transaction receipt of the contract creation transaction.
-         If the transaction has not yet been mined returns None
-        :return: dict: transaction receipt or None
+        Wait until the transaction receipt is available and add the address variable to EthContract and returns the transaction receipt of the contract creation transaction.
+        :return: dict: transaction receipt
         """
-        txn_receipt = self.w3.eth.getTransactionReceipt(self.txn_hash)
+        txn_receipt = self.w3.eth.waitForTransactionReceipt(self.txn_hash)
 
         if txn_receipt:
             self.address = txn_receipt['contractAddress']
