@@ -20,7 +20,7 @@ class EthContract():
                sender_private_key: str,
                provider_url: str) -> str:
         """
-        Deploy the Solidoty Smart contract to the Ethereum blockchain
+        Deploy the Solidity Smart contract to the Ethereum blockchain
         :param sender_public_key: public key of the sender
         :param sender_private_key: private key of the sender
         :param provider_url: address of the Ethereum connection provider

@@ -1,1 +1,2 @@
-from hashchain import records, ethereum
+from hashchain import records
+from hashchain import ethereum

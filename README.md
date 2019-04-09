@@ -24,6 +24,11 @@ This python package is available on PyPi package manager. I recommend installing
 I would be happy to hear from you if you have any comments, suggestions or requests to share with me. 
 
 ## Changelog
+#### 0.4.1
+##### Fixes:
+* Included the ethereum module in the package
+
+
 #### 0.4.0
 ##### Features:
 * Add more precise feedback on Record.verify() errors
