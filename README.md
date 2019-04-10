@@ -24,7 +24,7 @@ This python package is available on PyPi package manager. I recommend installing
 I would be happy to hear from you if you have any comments, suggestions or requests to share with me. 
 
 ## Changelog
-#### 0.6.1
+#### 0.6.2
 ##### Fixes:
 * Updated the Ethereum contract to comply with [MythX](https://mythx.io/) security standards
 
