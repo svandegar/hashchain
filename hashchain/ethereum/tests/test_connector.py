@@ -26,4 +26,4 @@ def test_EthConnector_record():
     assert connector.record(str(chain.records[1].get_content()),chain.records[1].get_hash())
 
 def test_EthConnector_getRecord():
-    assert connector.getRecord(str(chain.records[1].get_content()))
+    assert connector.get_record(str(chain.records[1].get_content()))

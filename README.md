@@ -24,11 +24,18 @@ This python package is available on PyPi package manager. I recommend installing
 I would be happy to hear from you if you have any comments, suggestions or requests to share with me. 
 
 ## Changelog
+#### 0.6.1
+##### Fixes:
+* Updated the Ethereum contract to comply with [MythX](https://mythx.io/) security standards
+
+#### 0.6.0
+##### Features:
+* Add `wait` argument to `ethereum.EthConnector().record()` to wait until the transaction receipt is received. This avoid sending many transactions with the same nonce, while running this function in a loop.
+
 #### 0.5.0
 ##### Features:
 * Updated the Ethereum Smart contract to store a `byte32=>byte32` key pair instead of `int64=>byte32`
 * Updated `ethereum.EthContract().record()` and `ethereum.EthContract().record()` to take a string as key input instead of an int. The string is hashed and the hash is used as key on the blockchain.
-
 
 #### 0.4.2
 ##### Fixes:
@@ -38,12 +45,10 @@ I would be happy to hear from you if you have any comments, suggestions or reque
 ##### Fixes:
 * Included the ethereum module in the package
 
-
 #### 0.4.0
 ##### Features:
 * Add more precise feedback on Record.verify() errors
 * Add ethereum.EthContract() to enable deploying the solidity smart contract on the Ethereum blockchain
-
 
 #### 0.3.0
 ##### Features:

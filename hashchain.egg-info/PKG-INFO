@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: hashchain
-Version: 0.4.2
+Version: 0.6.0
 Summary: Helper to certify database entries, using hashchains qnd blockchains
 Home-page: https://github.com/svandegar/hashchain
 Author: Seraphin Vandegar
@@ -32,6 +32,16 @@ Description: # Hashchain
         I would be happy to hear from you if you have any comments, suggestions or requests to share with me. 
         
         ## Changelog
+        #### 0.6.0
+        ##### Features:
+        * Add `wait` argument to `ethereum.EthConnector().record()` to wait until the transaction receipt is received. This avoid sending many transactions with the same nonce, while running this function in a loop.
+        
+        #### 0.5.0
+        ##### Features:
+        * Updated the Ethereum Smart contract to store a `byte32=>byte32` key pair instead of `int64=>byte32`
+        * Updated `ethereum.EthContract().record()` and `ethereum.EthContract().record()` to take a string as key input instead of an int. The string is hashed and the hash is used as key on the blockchain.
+        
+        
         #### 0.4.2
         ##### Fixes:
         * Removed the contract JSON file fron the structure and added ethereum/contract_interface to get the contract abi and binary. 
