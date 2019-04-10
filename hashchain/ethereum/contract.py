@@ -1,7 +1,6 @@
 from web3 import Web3, HTTPProvider
 import json
-
-CONTRACT_JSON_PATH = 'hashchain/ethereum/Hashchain.json'
+from hashchain.ethereum.contract_interface import ABI, BYTECODE
 
 
 class EthContract():
@@ -10,10 +9,10 @@ class EthContract():
     """
     def __init__(self):
         """
-        Get the contract definition from the JSON file located at 'hashchain/ethereum/Hashchain.json'
+        Get the contract definition from'
         """
-        with open(CONTRACT_JSON_PATH) as file:
-            self.contract_dict = json.load(file)
+        self.abi = json.loads(ABI)
+        self.bytecode = BYTECODE
 
     def deploy(self,
                sender_public_key: str,
@@ -30,9 +29,8 @@ class EthContract():
         self._owner_private_key = sender_private_key
         self._provider_address = provider_url
         self.w3 = Web3(HTTPProvider(self._provider_address))
-        self.abi = self.contract_dict['abi']
-        self.contract = self.w3.eth.contract(bytecode=self.contract_dict['bytecode'],
-                                             abi=self.contract_dict['abi'])
+        self.contract = self.w3.eth.contract(bytecode=self.bytecode,
+                                             abi=self.abi)
 
         txn_dict = dict(
             nonce=self.w3.eth.getTransactionCount(self.owner),

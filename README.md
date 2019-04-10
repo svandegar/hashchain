@@ -24,6 +24,16 @@ This python package is available on PyPi package manager. I recommend installing
 I would be happy to hear from you if you have any comments, suggestions or requests to share with me. 
 
 ## Changelog
+#### 0.5.0
+##### Features:
+* Updated the Ethereum Smart contract to store a `byte32=>byte32` key pair instead of `int64=>byte32`
+* Updated `ethereum.EthContract().record()` and `ethereum.EthContract().record()` to take a string as key input instead of an int. The string is hashed and the hash is used as key on the blockchain.
+
+
+#### 0.4.2
+##### Fixes:
+* Removed the contract JSON file fron the structure and added ethereum/contract_interface to get the contract abi and binary. 
+
 #### 0.4.1
 ##### Fixes:
 * Included the ethereum module in the package

@@ -1,7 +1,7 @@
 Metadata-Version: 2.1
 Name: hashchain
-Version: 0.4.1
-Summary: Helper to certify database entries, using hashchains qnd blockchqins
+Version: 0.4.2
+Summary: Helper to certify database entries, using hashchains qnd blockchains
 Home-page: https://github.com/svandegar/hashchain
 Author: Seraphin Vandegar
 Author-email: svandegar@hotmail.com
@@ -32,6 +32,10 @@ Description: # Hashchain
         I would be happy to hear from you if you have any comments, suggestions or requests to share with me. 
         
         ## Changelog
+        #### 0.4.2
+        ##### Fixes:
+        * Removed the contract JSON file fron the structure and added ethereum/contract_interface to get the contract abi and binary. 
+        
         #### 0.4.1
         ##### Fixes:
         * Included the ethereum module in the package

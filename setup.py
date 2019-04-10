@@ -1,12 +1,12 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
     name='hashchain',
-    version='0.4.1',
-    description='Helper to certify database entries, using hashchains qnd blockchqins',
+    version='0.4.2',
+    description='Helper to certify database entries, using hashchains qnd blockchains',
     long_description=long_description,
     long_description_content_type="text/markdown",
     url='https://github.com/svandegar/hashchain',

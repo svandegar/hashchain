@@ -1,4 +1,5 @@
 from web3 import Web3, HTTPProvider
+import hashlib
 
 
 class EthConnector():
@@ -27,28 +28,30 @@ class EthConnector():
         self.w3 = Web3(HTTPProvider(self._provider_address))
         self.contract = self.w3.eth.contract(address=contract_address, abi=contract_abi)
 
-    def record(self, key: int, hash: str):
+    def record(self, key: str, hash: str):
         """
         Records the key and hash in the smart contract storage
         :param key: indexed key, used to retrieve the hash
         :param hash: hash of the record
         :return: transaction hash
         """
-        bytes_hash = bytes.fromhex(hash)
+        key_hash = hashlib.sha3_256(key.encode('utf-8'))
+        hash_bytes = bytes.fromhex(hash)
         txn_dict = dict(
             nonce=self.w3.eth.getTransactionCount(self._sender_public_key),
             gasPrice=self.w3.eth.gasPrice,
             gas=2000000
         )
 
-        txn = self.contract.functions.record(key, bytes_hash).buildTransaction(txn_dict)
+        txn = self.contract.functions.record(key_hash.digest(), hash_bytes).buildTransaction(txn_dict)
         signed_txn = self.w3.eth.account.signTransaction(txn, self._sender_private_key)
         return self.w3.eth.sendRawTransaction(signed_txn.rawTransaction)
 
-    def getRecord(self, key: int):
+    def getRecord(self, key: str):
         """
         Get the record hash from the smart contract storage
         :param key: unique key
         :return: hash
         """
-        return self.contract.functions.getHash(key).call().hex()
+        key_hash = hashlib.sha3_256(key.encode('utf-8'))
+        return self.contract.functions.getHash(key_hash.digest()).call().hex()

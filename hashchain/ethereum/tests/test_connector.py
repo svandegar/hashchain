@@ -23,7 +23,7 @@ connector = EthConnector(
 
 # Tests
 def test_EthConnector_record():
-    assert connector.record(chain.records[1].get_content()['bar'],chain.records[1].get_hash())
+    assert connector.record(str(chain.records[1].get_content()),chain.records[1].get_hash())
 
 def test_EthConnector_getRecord():
-    assert connector.getRecord(chain.records[1].get_content()['bar'])
+    assert connector.getRecord(str(chain.records[1].get_content()))

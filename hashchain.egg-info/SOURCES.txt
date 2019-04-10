@@ -12,3 +12,4 @@ hashchain.egg-info/top_level.txt
 hashchain/ethereum/__init__.py
 hashchain/ethereum/connector.py
 hashchain/ethereum/contract.py
+hashchain/ethereum/contract_interface.py
