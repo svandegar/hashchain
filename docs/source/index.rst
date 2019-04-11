@@ -1,5 +1,3 @@
-
-
 Welcome to hashchain's documentation!
 =====================================
 
@@ -14,6 +12,11 @@ Introduction
 The core module creates a hash chain, attesting that no record can be tempered with, once saved. The blockchain module save a proof of your hashchain permanentely in the most secured way. Then, it's impossible to alter the haschain without causing a discrepancy with the blockchain.
 
 No need for third party certification anymore. No more single point of failure nor certification costs.
+
+.. warning:: The package is still 'work in progress'
+    Do not use it in production environment before the official release. All the features are still subject to changes without any advertisement and can broke previously running scripts
+
+
 
 Installation
 ============
