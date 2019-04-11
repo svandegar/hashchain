@@ -24,6 +24,10 @@ The documentation lives on [ReadTheDocs](https://hashchain.readthedocs.io/en/lat
 I would be happy to hear from you if you have any comments, suggestions or requests to share with me. 
 
 ## Changelog
+#### 0.7.0
+##### Changes:
+Removed every json conversion from the `records` module. /!\ This break previous versions. The hash calculation was impacted by this change.  
+
 #### 0.6.2
 ##### Fixes:
 * Updated the Ethereum contract to comply with [MythX](https://mythx.io/) security standards

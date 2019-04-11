@@ -67,13 +67,6 @@ class Record():
         dict['previous_hash'] = self.get_previous_hash()
         return dict
 
-    # def to_json(self) -> str:
-    #     """
-    #     Returns the JSON of the complete record along with the hex string of the record's hash and the previous hash
-    #     :return: JSON string
-    #     """
-    #     return json.dumps(self.to_dict())
-
 
 class Chain():
     def __init__(self, content_dicts: list, last_hash: str = None):
