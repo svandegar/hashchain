@@ -2,8 +2,10 @@ Welcome to hashchain's documentation!
 =====================================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: Contents:
+
+   records
 
 Introduction
 ============
@@ -30,23 +32,4 @@ Usage
 =====
 
 
-Records
-*******
-.. automodule:: hashchain.records
-   :members:
 
-Ethereum
-********
-.. automodule:: hashchain.ethereum.connector
-   :members:
-
-.. automodule:: hashchain.ethereum.contract
-   :members:
-
-
-Indices and tables
-******************
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
