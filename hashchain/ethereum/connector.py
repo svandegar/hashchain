@@ -4,7 +4,9 @@ import hashlib
 
 class EthConnector():
     """
+
     Connector to interact with a smart contract on the Ethereum blockchain.
+
     """
     def __init__(self,
                  contract_abi: str,
@@ -30,6 +32,7 @@ class EthConnector():
 
     def record(self, key: str, hash: str, wait = False):
         """
+
         Records the key and hash in the smart contract storage
 
         :param key: indexed key, used to retrieve the hash
@@ -57,10 +60,11 @@ class EthConnector():
 
     def get_record(self, key: str):
         """
+
         Get the record hash from the smart contract storage
 
         :param key: unique key
-        :return: hash
+        :return: hexadecimal string of the hash
         """
         key_hash = hashlib.sha3_256(key.encode('utf-8'))
         return self.contract.functions.getHash(key_hash.digest()).call().hex()

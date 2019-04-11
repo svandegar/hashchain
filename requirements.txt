@@ -16,6 +16,7 @@ eth-keys==0.2.1
 eth-rlp==0.1.2
 eth-typing==2.1.0
 eth-utils==1.4.1
+guzzle-sphinx-theme==0.7.11
 hexbytes==0.1.0
 idna==2.8
 imagesize==1.1.0

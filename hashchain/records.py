@@ -4,7 +4,9 @@ import json
 
 class Record():
     """
+
     This class wrap up a database record and add all the hash functions needed to build the hashchain
+
     """
     def __init__(self, content: dict, previous_hash: str = None):
         if not previous_hash:
@@ -25,35 +27,45 @@ class Record():
 
     def get_hash(self) -> str:
         """
+
         Get the hex hash of the record
+
         :return: hex string
         """
         return self.__hash.hexdigest()
 
     def hex(self) -> str:
         """
+
         Get the hex hash of the record
+
         :return: hex string
         """
         return self.__hash.hexdigest()
 
     def get_content(self) -> dict:
         """
+
         Get the original content of the record
+
         :return: dict
         """
         return json.loads(self.__content.decode('utf-8'))
 
     def get_previous_hash(self) -> str:
         """
+
         Get the previous hash
+
         :return: hex string
         """
         return self.__previous_hash
 
     def update(self, new_content: dict):
         """
+
         Updates the record and recalculated the hash
+
         :param new_content: new record's content
         :return: None
         """
@@ -61,6 +73,7 @@ class Record():
 
     def to_dict(self) -> dict:
         """
+
         Return a dict of the complete record along with the hex string of the record's hash and the previous hash
         :return: dict
         """
@@ -71,6 +84,7 @@ class Record():
 
     def to_json(self) -> str:
         """
+
         Returns the JSON of the complete record along with the hex string of the record's hash and the previous hash
 
         :return: JSON string

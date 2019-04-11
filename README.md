@@ -17,7 +17,7 @@ This python package is available on PyPi package manager. I recommend installing
 2. Import the package in you script with `import hashchain`
 
 ## How to start using haschain? 
-(the user guide will be online soon)
+The documentation lives on [ReadTheDocs](https://hashchain.readthedocs.io/en/latest/)
 
 
 ## Contribute
