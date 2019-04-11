@@ -31,6 +31,7 @@ class EthConnector():
     def record(self, key: str, hash: str, wait = False):
         """
         Records the key and hash in the smart contract storage
+
         :param key: indexed key, used to retrieve the hash
         :param hash: hash of the record
         :param wait: wait for the transaction to receipt before completing
@@ -57,6 +58,7 @@ class EthConnector():
     def get_record(self, key: str):
         """
         Get the record hash from the smart contract storage
+
         :param key: unique key
         :return: hash
         """

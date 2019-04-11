@@ -3,6 +3,9 @@ import json
 
 
 class Record():
+    """
+    This class wrap up a database record and add all the hash functions needed to build the hashchain
+    """
     def __init__(self, content: dict, previous_hash: str = None):
         if not previous_hash:
             genesis = hashlib.sha3_256(b'0x0000000000000000000000000000000000000000000000000000000000000000')
@@ -69,6 +72,7 @@ class Record():
     def to_json(self) -> str:
         """
         Returns the JSON of the complete record along with the hex string of the record's hash and the previous hash
+
         :return: JSON string
         """
         return json.dumps(self.to_dict())
@@ -90,7 +94,8 @@ class Chain():
 
 def verify(records_dicts: list) -> bool:
     """
-    Verifies a given list of records dicts
+    This function verifies a given list of records dicts
+
     :param records_dicts: list of Records objects
     :return: returns True if the list is valid. Raise ValueError if not valid.
     """

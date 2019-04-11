@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: hashchain
-Version: 0.6.1
+Version: 0.6.2
 Summary: Helper to certify database entries, using hashchains qnd blockchains
 Home-page: https://github.com/svandegar/hashchain
 Author: Seraphin Vandegar
@@ -32,7 +32,7 @@ Description: # Hashchain
         I would be happy to hear from you if you have any comments, suggestions or requests to share with me. 
         
         ## Changelog
-        #### 0.6.1
+        #### 0.6.2
         ##### Fixes:
         * Updated the Ethereum contract to comply with [MythX](https://mythx.io/) security standards
         

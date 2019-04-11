@@ -20,6 +20,7 @@ class EthContract():
                provider_url: str) -> str:
         """
         Deploy the Solidity Smart contract to the Ethereum blockchain
+
         :param sender_public_key: public key of the sender
         :param sender_private_key: private key of the sender
         :param provider_url: address of the Ethereum connection provider
@@ -47,6 +48,7 @@ class EthContract():
     def get_txn_receipt(self) -> dict:
         """
         Wait until the transaction receipt is available and add the address variable to EthContract and returns the transaction receipt of the contract creation transaction.
+
         :return: dict: transaction receipt
         """
         txn_receipt = self.w3.eth.waitForTransactionReceipt(self.txn_hash)

@@ -1,6 +1,9 @@
 venv/
 venv
 /venv/*
+build/
+_static/
+_templates/
 
 tests_inputs.json
 
