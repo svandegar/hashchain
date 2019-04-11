@@ -1,6 +1,5 @@
 from hashchain import records
 import hashlib
-import json
 import pytest
 import copy
 
@@ -40,10 +39,12 @@ chain_b = [
     records.Record(c_content, genesis_hash).to_dict()
 ]
 chain_c = [
-    {'content': {'a': 4}, 'hash': '95fdffb09de2f3e3cea8b86da0748ca94d962090d35cd58d6865f860ac467a3e', 'previous_hash': 'e611aee939484e3afa4ee9d9c4e23a004a1fe2805b7fa4c95d42f3f2667638a2'},
+    {'content': {'a': 4}, 'hash': '95fdffb09de2f3e3cea8b86da0748ca94d962090d35cd58d6865f860ac467a3e',
+     'previous_hash': 'e611aee939484e3afa4ee9d9c4e23a004a1fe2805b7fa4c95d42f3f2667638a2'},
     records.Record(b_content, records.Record(a_content).get_hash()).to_dict(),
     records.Record(c_content, records.Record(b_content, records.Record(a_content).get_hash()).get_hash()).to_dict()
 ]
+
 
 # Tests
 
@@ -52,27 +53,26 @@ def test_Record_get_hash():
     # first Record
     a_previous_hash = genesis_hash
     hash_a = hashlib.sha3_256()
-    hash_a.update(json.dumps(a_content).encode('utf-8'))
+    hash_a.update(a_content.__str__().encode('utf-8'))
     hash_a.update(a_previous_hash.encode('utf-8'))
 
-    assert a.get_hash() == hash_a.hexdigest()
 
     # other Record
     hash_d = hashlib.sha3_256()
-    hash_d.update(json.dumps(d_content).encode('utf-8'))
+    hash_d.update(d_content.__str__().encode('utf-8'))
     hash_d.update(d_previous_hash.encode('utf-8'))
 
     assert d.get_hash() == hash_d.hexdigest()
 
 
 def test_Record_hex():
-    assert a.hex() == '95fdffb09de2f3e3cea8b86da0748ca94d962090d35cd58d6865f860ac467a3e'
-    assert b.hex() == '95fdffb09de2f3e3cea8b86da0748ca94d962090d35cd58d6865f860ac467a3e'
-    assert c.hex() == 'ff7f75c77ae32fa60c4bc19d86adfb2e93d63f710ddfa297833ba5c75553dbf6'
-    assert d.hex() == 'a7493b931d82f592a10e3b5759a214f18f1d7ef054bac50e220807f831595d6c'
-    assert e.hex() == 'da99cfd956ac1db6f67722e1907be703aa21da69977abedb621fb469c682a85a'
-    assert f.hex() == 'a7493b931d82f592a10e3b5759a214f18f1d7ef054bac50e220807f831595d6c'
-    assert g.hex() == '93be4678ab7ce6895ee63d9d557f170adadb21dfd217cc9b742a311c8d4d6007'
+    assert a.hex() == 'd7874bdf8e874cdc24bccb2dfaaed24b88ea9dbebc0b2fae9f6e1bdf691115e2'
+    assert b.hex() == 'd7874bdf8e874cdc24bccb2dfaaed24b88ea9dbebc0b2fae9f6e1bdf691115e2'
+    assert c.hex() == '949553d53a9502131544a7865d3c2c518f41093d5e4c192075b8805f18436b87'
+    assert d.hex() == '3098ef9fcfb55963d8670eec4dee23c58cfb0d0feef9dcf215f965483709fb51'
+    assert e.hex() == 'c436a7b6bf29b798164e88795670a39ceb5bc3e4266f6c97a10db9dcf3a3b377'
+    assert f.hex() == '3098ef9fcfb55963d8670eec4dee23c58cfb0d0feef9dcf215f965483709fb51'
+    assert g.hex() == '0b485abe2315a3602178a1897f7c7eaa2f7de06100af8d74a6181bc7e0f80660'
 
 
 def test_Record_get_content():
@@ -115,34 +115,26 @@ def test_Record_update():
 
 def test_Record_to_dict():
     dict = copy.deepcopy(a_content)
-    dict['hash']=a.get_hash()
+    dict['hash'] = a.get_hash()
     dict['previous_hash'] = a.get_previous_hash()
 
     assert a.to_dict() == dict
 
 
-def test_Record_to_json():
-    dict = copy.deepcopy(a_content)
-    dict['hash'] = a.get_hash()
-    dict['previous_hash'] = a.get_previous_hash()
-
-    assert a.to_json() == json.dumps(dict)
-
-
 def test_verify():
     assert records.verify(chain_a) == True
 
-    with pytest.raises(ValueError) :
+    with pytest.raises(ValueError):
         records.verify(chain_b)
 
-    with pytest.raises(ValueError) :
+    with pytest.raises(ValueError):
         records.verify(chain_c)
 
 
 def test_Chain():
-   chain1 = records.Chain([a_content,b_content,c_content,d_content])
-   assert chain1.records.__len__() == 4
-   assert chain1.last_hash == '4065526ceb951b5aa5bf1392cb5611275091f1dcd87c2842fcc2379ef9606c2f'
+    chain1 = records.Chain([a_content, b_content, c_content, d_content])
+    assert chain1.records.__len__() == 4
+    assert chain1.last_hash == '7fcd65965419dc3ecdc9a30bbf16c0e59439056a5eaf9e50f413eb7b81c3c433'
 
-   chain2 = records.Chain([a_content, b_content, c_content, d_content], last_hash='foo')
-   assert chain2.last_hash =='cbf4c24a816500cee4c0ed556775b14bf12369cba31c3fb1aa6faef132a1a79e'
+    chain2 = records.Chain([a_content, b_content, c_content, d_content], last_hash='foo')
+    assert chain2.last_hash == 'b66faeb799631c9565600fd5f7320027fd491df13c556003cc924cff88365833'

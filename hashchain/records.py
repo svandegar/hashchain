@@ -1,22 +1,18 @@
 import hashlib
-import json
+from copy import deepcopy
+
 
 
 class Record():
-    """
-
-    This class wrap up a database record and add all the hash functions needed to build the hashchain
-
-    """
     def __init__(self, content: dict, previous_hash: str = None):
         if not previous_hash:
             genesis = hashlib.sha3_256(b'0x0000000000000000000000000000000000000000000000000000000000000000')
             previous_hash = genesis.hexdigest()
 
-        self.__content = json.dumps(content).encode('utf-8')
+        self.__content = content
         self.__previous_hash = previous_hash
         self.__hash = hashlib.sha3_256()
-        self.__hash.update(self.__content)
+        self.__hash.update(content.__str__().encode('utf-8'))
         self.__hash.update(previous_hash.encode('utf-8'))
 
     def __eq__(self, other: 'Record') -> bool:
@@ -27,45 +23,35 @@ class Record():
 
     def get_hash(self) -> str:
         """
-
         Get the hex hash of the record
-
         :return: hex string
         """
         return self.__hash.hexdigest()
 
     def hex(self) -> str:
         """
-
         Get the hex hash of the record
-
         :return: hex string
         """
         return self.__hash.hexdigest()
 
     def get_content(self) -> dict:
         """
-
         Get the original content of the record
-
         :return: dict
         """
-        return json.loads(self.__content.decode('utf-8'))
+        return self.__content
 
     def get_previous_hash(self) -> str:
         """
-
         Get the previous hash
-
         :return: hex string
         """
         return self.__previous_hash
 
     def update(self, new_content: dict):
         """
-
         Updates the record and recalculated the hash
-
         :param new_content: new record's content
         :return: None
         """
@@ -73,23 +59,20 @@ class Record():
 
     def to_dict(self) -> dict:
         """
-
         Return a dict of the complete record along with the hex string of the record's hash and the previous hash
         :return: dict
         """
-        dict = self.get_content()
+        dict = deepcopy(self.__content)
         dict['hash'] = self.get_hash()
         dict['previous_hash'] = self.get_previous_hash()
         return dict
 
-    def to_json(self) -> str:
-        """
-
-        Returns the JSON of the complete record along with the hex string of the record's hash and the previous hash
-
-        :return: JSON string
-        """
-        return json.dumps(self.to_dict())
+    # def to_json(self) -> str:
+    #     """
+    #     Returns the JSON of the complete record along with the hex string of the record's hash and the previous hash
+    #     :return: JSON string
+    #     """
+    #     return json.dumps(self.to_dict())
 
 
 class Chain():
@@ -108,8 +91,7 @@ class Chain():
 
 def verify(records_dicts: list) -> bool:
     """
-    This function verifies a given list of records dicts
-
+    Verifies a given list of records dicts
     :param records_dicts: list of Records objects
     :return: returns True if the list is valid. Raise ValueError if not valid.
     """
