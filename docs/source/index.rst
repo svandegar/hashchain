@@ -5,7 +5,8 @@ Welcome to hashchain's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   records
+    records
+    ethereum
 
 Introduction
 ============
