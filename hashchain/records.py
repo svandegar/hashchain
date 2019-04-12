@@ -1,18 +1,16 @@
-import hashlib
 from copy import deepcopy
-
+import sha3
 
 
 class Record():
     def __init__(self, content: dict, previous_hash: str = None):
         if not previous_hash:
-            genesis = hashlib.sha3_256(b'0x0000000000000000000000000000000000000000000000000000000000000000')
+            genesis = sha3.keccak_256(b'0x0000000000000000000000000000000000000000000000000000000000000000')
             previous_hash = genesis.hexdigest()
 
         self.__content = content
         self.__previous_hash = previous_hash
-        self.__hash = hashlib.sha3_256()
-        self.__hash.update(content.__str__().encode('utf-8'))
+        self.__hash = sha3.keccak_256(content.__str__().encode('utf-8'))
         self.__hash.update(previous_hash.encode('utf-8'))
 
     def __eq__(self, other: 'Record') -> bool:
@@ -73,7 +71,7 @@ class Chain():
         if last_hash:
             self.last_hash = last_hash
         else:
-            self.last_hash = hashlib.sha3_256(
+            self.last_hash = sha3.keccak_256(
                 b'0x0000000000000000000000000000000000000000000000000000000000000000').hexdigest()
         self.records = []
         for element in content_dicts:
@@ -93,9 +91,9 @@ def verify(records_dicts: list) -> bool:
         test_record = Record(content, record['previous_hash'])
 
         if record['hash'] != test_record.get_hash():
-            raise ValueError(f"The record: {record} do no correspond to the hash provided :{record['hash']}")
+            raise ValueError("The record: {} do no correspond to the hash provided :{}".format(record,record['hash']))
 
         elif index >= 1 and test_record.get_previous_hash() != records_dicts[index - 1]['hash']:
-            raise ValueError(f"The previous hash: {test_record.get_previous_hash()} do no correspond to the hash of the previous element: {records_dicts[index - 1]['hash']}")
+            raise ValueError("The previous hash: {} do no correspond to the hash of the previous element: {}".format(test_record.get_previous_hash(),records_dicts[index - 1]['hash']))
 
     return True

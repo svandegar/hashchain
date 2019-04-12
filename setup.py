@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='hashchain',
-    version='0.7.0',
+    version='0.8.0',
     description='Helper to certify database entries, using hashchains qnd blockchains',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -18,10 +18,11 @@ setup(
     download_url='',
     install_requires=[
         'web3',
+        'pysha3'
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3.7'
+        'Programming Language :: Python :: 3.5'
     ]
 )

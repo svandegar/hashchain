@@ -1,6 +1,10 @@
 venv/
 venv
 /venv/*
+/venv3.5
+venv3.5
+venv3.5/
+
 build/
 _static/
 _templates/
