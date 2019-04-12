@@ -66,7 +66,7 @@ I would be happy to hear from you if you have any comments, suggestions or reque
 ##### Features:
 Request.to_dict() and .to_json() now returns a simple object. The keys "hash" and "previous_hash" are appended at the same level
 
-#####Fix: 
+##### Fix: 
 Add web3.py to the install_requires list
 
 #### 0.2.0
