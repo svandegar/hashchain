@@ -7,6 +7,7 @@ Welcome to hashchain's documentation!
 
     records<records>
     ethereum<ethereum>
+    Solidity smart contract <solidity_contract>
 
 Introduction
 ============
