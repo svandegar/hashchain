@@ -26,6 +26,11 @@ The documentation lives on [ReadTheDocs](https://hashchain.readthedocs.io/en/lat
 I would be happy to hear from you if you have any comments, suggestions or requests to share with me. 
 
 ## Changelog
+#### 0.8.1
+##### Fixes:
+* Remove a hashlib reference in ethereum.contract
+
+
 #### 0.8.0
 ##### Changes:
 * Updated the hash algorythm to Keccak (sha3_256). /!\ This break previous versions.

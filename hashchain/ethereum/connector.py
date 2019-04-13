@@ -1,5 +1,5 @@
 from web3 import Web3, HTTPProvider
-import hashlib
+import sha3
 
 
 class EthConnector():
@@ -30,7 +30,7 @@ class EthConnector():
         self.w3 = Web3(HTTPProvider(self._provider_address))
         self.contract = self.w3.eth.contract(address=contract_address, abi=contract_abi)
 
-    def record(self, key: str, hash: str, wait = False):
+    def record(self, key: str, hash: str, wait = False) -> str:
         """
 
         Records the key and hash in the smart contract storage
@@ -40,7 +40,7 @@ class EthConnector():
         :param wait: wait for the transaction to receipt before completing
         :return: transaction hash
         """
-        key_hash = hashlib.sha3_256(key.encode('utf-8'))
+        key_hash = sha3.keccak_256(key.encode('utf-8'))
         hash_bytes = bytes.fromhex(hash)
         txn_dict = dict(
             nonce=self.w3.eth.getTransactionCount(self._sender_public_key),
@@ -58,7 +58,7 @@ class EthConnector():
         else:
             return txn_hash
 
-    def get_record(self, key: str):
+    def get_record(self, key: str) -> str:
         """
 
         Get the record hash from the smart contract storage
@@ -66,5 +66,5 @@ class EthConnector():
         :param key: unique key
         :return: hexadecimal string of the hash
         """
-        key_hash = hashlib.sha3_256(key.encode('utf-8'))
+        key_hash = sha3.keccak_256(key.encode('utf-8'))
         return self.contract.functions.getHash(key_hash.digest()).call().hex()
