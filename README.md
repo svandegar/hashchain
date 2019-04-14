@@ -26,6 +26,10 @@ The documentation lives on [ReadTheDocs](https://hashchain.readthedocs.io/en/lat
 I would be happy to hear from you if you have any comments, suggestions or requests to share with me. 
 
 ## Changelog
+#### 0.8.2
+##### Fixes:
+* Update the Record object to sort the content in an ordered dict to fix python 3.5 compatibility issue. /!\ This breaks previous versions as this impact the hash calculation.
+
 #### 0.8.1
 ##### Fixes:
 * Remove a hashlib reference in ethereum.contract
@@ -33,13 +37,13 @@ I would be happy to hear from you if you have any comments, suggestions or reque
 
 #### 0.8.0
 ##### Changes:
-* Updated the hash algorythm to Keccak (sha3_256). /!\ This break previous versions.
+* Updated the hash algorythm to Keccak (sha3_256). /!\ This breaks previous versions.
 * Added Python 3.5 and 3.6 compatibility
 
 
 #### 0.7.0
 ##### Changes:
-* Removed every json conversion from the `records` module. /!\ This break previous versions. The hash calculation was impacted by this change.  
+* Removed every json conversion from the `records` module. /!\ This breaks previous versions. The hash calculation was impacted by this change.  
 
 #### 0.6.2
 ##### Fixes:

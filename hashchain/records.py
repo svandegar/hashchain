@@ -1,5 +1,6 @@
 from copy import deepcopy
 import sha3
+import collections
 
 
 class Record():
@@ -8,10 +9,10 @@ class Record():
             genesis = sha3.keccak_256(b'0x0000000000000000000000000000000000000000000000000000000000000000')
             previous_hash = genesis.hexdigest()
 
-        self.__content = content
+        self.__content = collections.OrderedDict(sorted(content.items()))
         self.__previous_hash = previous_hash
-        self.__hash = sha3.keccak_256(content.__str__().encode('utf-8'))
-        self.__hash.update(previous_hash.encode('utf-8'))
+        self.__hash = sha3.keccak_256(self.__content.__str__().encode('utf-8'))
+        self.__hash.update(self.__previous_hash.encode('utf-8'))
 
     def __eq__(self, other: 'Record') -> bool:
         if self.get_hash() == other.get_hash():
@@ -87,13 +88,20 @@ def verify(records_dicts: list) -> bool:
     :return: returns True if the list is valid. Raise ValueError if not valid.
     """
     for index, record in enumerate(records_dicts):
-        content = {x : record[x] for x in record if x not in ['previous_hash','hash']}
+        content = {x: record[x] for x in record if x not in ['previous_hash', 'hash']}
         test_record = Record(content, record['previous_hash'])
 
         if record['hash'] != test_record.get_hash():
-            raise ValueError("The record: {} do no correspond to the hash provided :{}".format(record,record['hash']))
+            raise ValueError("The record: {} do no correspond to the hash provided :{}".format(record, test_hash))
 
-        elif index >= 1 and test_record.get_previous_hash() != records_dicts[index - 1]['hash']:
-            raise ValueError("The previous hash: {} do no correspond to the hash of the previous element: {}".format(test_record.get_previous_hash(),records_dicts[index - 1]['hash']))
+        try:
+            last_hash = records_dicts[index + 1]['hash']
+        except IndexError:
+            genesis = sha3.keccak_256(b'0x0000000000000000000000000000000000000000000000000000000000000000').hexdigest()
+            last_hash = genesis
+
+        if test_record.get_previous_hash() != last_hash:
+            raise ValueError("The previous hash: {} do no correspond to the hash of the previous element: {}".format(
+                test_record.get_previous_hash(), records_dicts[index - 1]['hash']))
 
     return True

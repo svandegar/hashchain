@@ -2,16 +2,17 @@ from hashchain import records
 import sha3
 import pytest
 import copy
+import collections
 
 # Set inputs
 
-a_content = {'a': 3}
-b_content = {'a': 3}
-c_content = {'c': 4}
-d_content = {'a': 3}
-e_content = {'a': 3}
-f_content = {'a': 3}
-g_content = {'c': 4}
+a_content = collections.OrderedDict({'a': 3})
+b_content = collections.OrderedDict({'a': 3})
+c_content = collections.OrderedDict({'c': 4})
+d_content = collections.OrderedDict({'a': 3})
+e_content = collections.OrderedDict({'a': 3})
+f_content = collections.OrderedDict({'a': 3})
+g_content = collections.OrderedDict({'c': 4})
 
 genesis_hash = sha3.keccak_256(b'0x0000000000000000000000000000000000000000000000000000000000000000').hexdigest()
 
@@ -66,13 +67,13 @@ def test_Record_get_hash():
 
 
 def test_Record_hex():
-    assert a.hex() == 'ca28ead4df3a89b70668fd1edbce8726e9b5fd2b85276623076cbd3052017618'
-    assert b.hex() == 'ca28ead4df3a89b70668fd1edbce8726e9b5fd2b85276623076cbd3052017618'
-    assert c.hex() == '17f737c4c697c3c2aaf1ec87e8f2fdaf9a01b69a5d9524f095fef8d9ab11877d'
-    assert d.hex() == '03b263483301730fec90813789c642da6557b5162a4c56e68a77d876e6789a0f'
-    assert e.hex() == '7172f21051812a9f5da64171f9ec839223ba1aac5c128a6f0f54acda124d6da2'
-    assert f.hex() == '03b263483301730fec90813789c642da6557b5162a4c56e68a77d876e6789a0f'
-    assert g.hex() == '594522c7e61e3b6f215cda60c82fab544279a5bd3dbcf1bb7b92681d96c4e471'
+    assert a.hex() == '1696beb08013f377b8ff15bfa86581a672eaff47ed61963602e8e8ac5c47f33b'
+    assert b.hex() == '1696beb08013f377b8ff15bfa86581a672eaff47ed61963602e8e8ac5c47f33b'
+    assert c.hex() == 'a93c283dd11c1a54efcebe517a00e075cd4b54f72d765d3ccf18f7283d854479'
+    assert d.hex() == '0f2a20330548d8e51cac28b61352126c484f93a55cef2c59a624b636e059f389'
+    assert e.hex() == '84f5224e4dcfbc670eae8c2fe5790c2538d5f73d6cfefb89e653af8f694a4aa8'
+    assert f.hex() == '0f2a20330548d8e51cac28b61352126c484f93a55cef2c59a624b636e059f389'
+    assert g.hex() == 'ce82ff457496fc3303848e53db24803cdf01fa4281cca3f74784118ca58d91b3'
 
 
 def test_Record_get_content():
@@ -122,19 +123,19 @@ def test_Record_to_dict():
 
 
 def test_verify():
-    assert records.verify(chain_a) == True
+    assert records.verify(chain_a[::-1]) == True
 
     with pytest.raises(ValueError):
-        records.verify(chain_b)
+        records.verify(chain_b[::-1])
 
     with pytest.raises(ValueError):
-        records.verify(chain_c)
+        records.verify(chain_c[::-1])
 
 
 def test_Chain():
     chain1 = records.Chain([a_content, b_content, c_content, d_content])
     assert chain1.records.__len__() == 4
-    assert chain1.last_hash == '440f37efb581edf582f61e4d80d843fbf3b1c52e3e7f9c78d4505eeffdbdd2f1'
+    assert chain1.last_hash == '18096f349b871c7c7d296b21f4a09c05e34358c4d3a23f588fa9172c92ef9593'
 
     chain2 = records.Chain([a_content, b_content, c_content, d_content], last_hash='foo')
-    assert chain2.last_hash == '5b5c2f86ac2951502e76d0baa565cb5da87fe24c0f869f1d079977b16f598cc4'
+    assert chain2.last_hash == '879a1946c10853b0ee29e609db4ea041ed829605651ecb54093375c6345cb1f7'

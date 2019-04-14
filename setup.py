@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='hashchain',
-    version='0.8.1',
+    version='0.8.2',
     description='Helper to certify database entries, using hashchains qnd blockchains',
     long_description=long_description,
     long_description_content_type="text/markdown",
