@@ -28,7 +28,7 @@ I would be happy to hear from you if you have any comments, suggestions or reque
 ## Changelog
 #### 0.8.3
 ##### Changes:
-* Update the Solidity contract to remove unused functions.
+* Update the Ethereum Smart Contract contract to remove unused functions.
 
 
 #### 0.8.2
