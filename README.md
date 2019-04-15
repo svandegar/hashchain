@@ -26,6 +26,11 @@ The documentation lives on [ReadTheDocs](https://hashchain.readthedocs.io/en/lat
 I would be happy to hear from you if you have any comments, suggestions or requests to share with me. 
 
 ## Changelog
+#### 0.8.3
+##### Changes:
+* Update the Solidity contract to remove unused functions.
+
+
 #### 0.8.2
 ##### Fixes:
 * Update the Record object to sort the content in an ordered dict to fix python 3.5 compatibility issue. /!\ This breaks previous versions as this impact the hash calculation.

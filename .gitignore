@@ -4,6 +4,8 @@ venv
 /venv3.5
 venv3.5
 venv3.5/
+dist/
+hashchain.egg-info/
 
 build/
 _static/
