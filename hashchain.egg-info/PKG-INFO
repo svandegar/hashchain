@@ -1,7 +1,7 @@
 Metadata-Version: 2.1
 Name: hashchain
-Version: 0.8.2
-Summary: Helper to certify database entries, using hashchains qnd blockchains
+Version: 0.8.3
+Summary: Helper to certify database entries, using hashchains and blockchains
 Home-page: https://github.com/svandegar/hashchain
 Author: Seraphin Vandegar
 Author-email: svandegar@hotmail.com
@@ -34,6 +34,11 @@ Description: # Hashchain
         I would be happy to hear from you if you have any comments, suggestions or requests to share with me. 
         
         ## Changelog
+        #### 0.8.3
+        ##### Changes:
+        * Update the Ethereum Smart Contract contract to remove unused functions.
+        
+        
         #### 0.8.2
         ##### Fixes:
         * Update the Record object to sort the content in an ordered dict to fix python 3.5 compatibility issue. /!\ This breaks previous versions as this impact the hash calculation.
