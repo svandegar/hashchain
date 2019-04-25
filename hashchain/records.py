@@ -92,7 +92,7 @@ def verify(records_dicts: list) -> bool:
         test_record = Record(content, record['previous_hash'])
 
         if record['hash'] != test_record.get_hash():
-            raise ValueError("The record: {} do no correspond to the hash provided :{}".format(record, test_hash))
+            raise ValueError("The record: {} do no correspond to the hash provided :{}".format(record, test_record.get_hash()))
 
         try:
             last_hash = records_dicts[index + 1]['hash']

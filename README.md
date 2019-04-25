@@ -26,10 +26,13 @@ The documentation lives on [ReadTheDocs](https://hashchain.readthedocs.io/en/lat
 I would be happy to hear from you if you have any comments, suggestions or requests to share with me. 
 
 ## Changelog
-#### 0.8.3
+#### 0.8.4
 ##### Changes:
 * Update the Ethereum Smart Contract contract to remove unused functions.
 
+#### 0.8.3
+##### Fixes:
+* Fix `records.verify()` function.
 
 #### 0.8.2
 ##### Fixes:

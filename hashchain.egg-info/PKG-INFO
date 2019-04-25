@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: hashchain
-Version: 0.8.3
+Version: 0.8.4
 Summary: Helper to certify database entries, using hashchains and blockchains
 Home-page: https://github.com/svandegar/hashchain
 Author: Seraphin Vandegar
@@ -34,10 +34,13 @@ Description: # Hashchain
         I would be happy to hear from you if you have any comments, suggestions or requests to share with me. 
         
         ## Changelog
-        #### 0.8.3
+        #### 0.8.4
         ##### Changes:
         * Update the Ethereum Smart Contract contract to remove unused functions.
         
+        #### 0.8.3
+        ##### Fixes:
+        * Fix `records.verify()` function.
         
         #### 0.8.2
         ##### Fixes:

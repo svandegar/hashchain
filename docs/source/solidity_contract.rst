@@ -1,7 +1,11 @@
 Solidity Contrat
 ================
 
-Here is the Solidity contract definition built by the Python ``hashchain`` module. This contract has been tested against `MythX <https://mythx.io/>`_ security standards.
+Here is the Solidity contract definition built by the Python ``hashchain`` module.
+
+This contract has been designed to store data privately using as little gas as possible.
+
+This contract has been tested against `MythX <https://mythx.io/>`_ security standards.
 
 .. code-block:: javascript 
 
