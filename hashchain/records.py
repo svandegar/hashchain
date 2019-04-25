@@ -23,6 +23,7 @@ class Record():
     def get_hash(self) -> str:
         """
         Get the hex hash of the record
+
         :return: hex string
         """
         return self.__hash.hexdigest()
@@ -30,6 +31,7 @@ class Record():
     def hex(self) -> str:
         """
         Get the hex hash of the record
+
         :return: hex string
         """
         return self.__hash.hexdigest()
@@ -37,6 +39,7 @@ class Record():
     def get_content(self) -> dict:
         """
         Get the original content of the record
+
         :return: dict
         """
         return self.__content
@@ -44,6 +47,7 @@ class Record():
     def get_previous_hash(self) -> str:
         """
         Get the previous hash
+
         :return: hex string
         """
         return self.__previous_hash
@@ -51,6 +55,7 @@ class Record():
     def update(self, new_content: dict):
         """
         Updates the record and recalculated the hash
+
         :param new_content: new record's content
         :return: None
         """
@@ -59,6 +64,7 @@ class Record():
     def to_dict(self) -> dict:
         """
         Return a dict of the complete record along with the hex string of the record's hash and the previous hash
+
         :return: dict
         """
         dict = deepcopy(self.__content)
@@ -84,6 +90,7 @@ class Chain():
 def verify(records_dicts: list) -> bool:
     """
     Verifies a given list of records dicts
+
     :param records_dicts: list of Records objects
     :return: returns True if the list is valid. Raise ValueError if not valid.
     """
