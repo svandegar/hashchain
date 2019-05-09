@@ -9,8 +9,8 @@ The core module creates a hash chain, attesting that no record can be tempered w
 
 No need for third party certification anymore. No more single point of failure nor certification costs.
 
-.. warning:: The package is still 'work in progress'
-    Do not use it in production environment before the official release. All the features are still subject to changes without any advertisement and can broke previously running scripts
+.. note:: The package is in beta release
+    Even though No major change to the hashing mechanism should be expected, we can't provide any kind of grantee. Use it in a production environment at your own risk.
 
 
 Documentation
