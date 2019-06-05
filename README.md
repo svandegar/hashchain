@@ -21,6 +21,8 @@ This package is tested against Python 3.5.7 and 3.7.1 versions
 ## How to start using haschain? 
 The documentation lives on [ReadTheDocs](https://hashchain.readthedocs.io/en/latest/)
 
+I wrote an article on Medium to show a simple example of this package utilization: https://medium.com/@svandegar/certify-data-on-blockchain-with-python-and-no-prior-blockchain-experience-f09b7e3deb30
+
 
 ## Contribute
 I would be happy to hear from you if you have any comments, suggestions or requests to share with me. 
